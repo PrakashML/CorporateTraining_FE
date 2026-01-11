@@ -1,0 +1,40 @@
+.card {
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+textarea, input, select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.primary {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+}
+
+.danger {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+}
+
+.error {
+  color: red;
+}

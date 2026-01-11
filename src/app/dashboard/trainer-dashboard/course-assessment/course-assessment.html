@@ -1,0 +1,54 @@
+<h2>Course Assessment</h2>
+
+@if (loading) {
+  <div>Loading...</div>
+}
+
+@if (error) {
+  <p class="error">{{ error }}</p>
+}
+
+<!-- ================= CREATE ================= -->
+@if (!loading && !assessment) {
+  <div class="card">
+
+    <h3>No Assessment Found</h3>
+
+    <label>Pass Percentage</label>
+    <input
+      type="number"
+      [(ngModel)]="passPercentage"
+      min="1"
+      max="100" />
+
+    <button class="primary" (click)="createAssessment()">
+      Create Assessment
+    </button>
+
+  </div>
+}
+
+<!-- ================= VIEW ================= -->
+@if (!loading && assessment) {
+  <div class="card">
+
+    <h3>Assessment Details</h3>
+
+    <p><b>Assessment ID:</b> {{ assessment.id }}</p>
+    <p><b>Pass Percentage:</b> {{ assessment.passPercentage }}%</p>
+    <p><b>Status:</b> {{ assessment.active ? 'Active' : 'Inactive' }}</p>
+
+    <div class="actions">
+      <button class="primary" (click)="openQuestions()">
+        Manage Questions ({{ questions.length }})
+      </button>
+
+      <button class="danger" (click)="deleteAssessment()">
+        Delete Assessment
+      </button>
+    </div>
+
+  </div>
+}
+
+<router-outlet></router-outlet>

@@ -43,7 +43,25 @@
           </td>
 
           <!-- ✅ ACTIONS COLUMN -->
-         <td>
+        <td class="actions">
+
+  <!-- ✅ Modules -->
+  <a
+    [routerLink]="['/trainer/courses', course.id, 'modules']"
+    class="modules-btn"
+  >
+    Modules
+  </a>
+
+  <!-- ✅ Assessment -->
+  <a
+    [routerLink]="['/trainer/courses', course.id, 'assessment']"
+    class="assessment-btn"
+  >
+    Assessment
+  </a>
+
+  <!-- ✏️ Edit -->
   <a
     [routerLink]="['/trainer/courses/edit', course.id]"
     class="edit-btn"
@@ -51,13 +69,16 @@
     Edit
   </a>
 
+  <!-- 🗑 Delete -->
   <button
     class="delete-btn"
     (click)="deleteCourse(course.id)"
   >
     Delete
   </button>
+
 </td>
+
 
         </tr>
       }

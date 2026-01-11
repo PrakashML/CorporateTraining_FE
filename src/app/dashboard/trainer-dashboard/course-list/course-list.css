@@ -54,3 +54,32 @@ th {
 .course-link:hover {
   text-decoration: underline;
 }
+.actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.modules-btn {
+  background: #1976d2;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.assessment-btn {
+  background: #2e7d32;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.modules-btn:hover {
+  background: #125ca1;
+}
+
+.assessment-btn:hover {
+  background: #1b5e20;
+}

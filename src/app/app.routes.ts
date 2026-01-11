@@ -11,8 +11,8 @@ import { EditCourse } from './dashboard/trainer-dashboard/edit-course/edit-cours
 import { ModuleList } from './dashboard/trainer-dashboard/course-modules/module-list/module-list';
 import { CreateModule } from './dashboard/trainer-dashboard/course-modules/create-module/create-module';
 import { EditModule } from './dashboard/trainer-dashboard/course-modules/edit-module/edit-module';
-
-
+import { CourseAssessment } from './dashboard/trainer-dashboard/course-assessment/course-assessment';
+import { AssessmentQuestions } from './dashboard/trainer-dashboard/course-assessment/questions/questions';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -47,9 +47,19 @@ export const routes: Routes = [
         component: ModuleList,
         children: [
           { path: 'create', component: CreateModule },
-
-          // ✅ Phase 5.3 - Edit Module
           { path: 'edit/:moduleId', component: EditModule }
+        ]
+      },
+
+      // Assessment (Nested)
+      {
+        path: 'courses/:courseId/assessment',
+        component: CourseAssessment,
+        children: [
+          {
+            path: 'questions',
+            component: AssessmentQuestions
+          }
         ]
       }
     ]
@@ -57,4 +67,3 @@ export const routes: Routes = [
 
   { path: '**', redirectTo: 'login' }
 ];
-
