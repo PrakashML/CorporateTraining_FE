@@ -28,6 +28,14 @@ export class CourseService {
     `${this.baseUrl}/create?trainerId=${trainerId}`,
     course
   );
+  }
+  getCourseById(courseId: string) {
+  return this.http.get<Course>(`${this.baseUrl}/${courseId}`);
 }
+
+updateCourse(courseId: string, payload: any) {
+  return this.http.put(`${this.baseUrl}/${courseId}`, payload);
+}
+
 
 }

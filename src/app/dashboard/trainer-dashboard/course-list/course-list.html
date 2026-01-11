@@ -18,11 +18,12 @@
         <th>Skill Level</th>
         <th>Duration (hrs)</th>
         <th>Status</th>
+        <th>Actions</th>
       </tr>
     </thead>
 
     <tbody>
-      @for (course of courses; track course.id || $index) {
+      @for (course of courses; track course.id) {
         <tr>
           <td>{{ course.title }}</td>
           <td>{{ course.skillLevel }}</td>
@@ -31,6 +32,16 @@
             <span [class.active]="course.active">
               {{ course.active ? 'Active' : 'Inactive' }}
             </span>
+          </td>
+
+          <!-- ✅ ACTIONS COLUMN -->
+          <td>
+            <a
+              [routerLink]="['/trainer/courses/edit', course.id]"
+              class="edit-btn"
+            >
+              Edit
+            </a>
           </td>
         </tr>
       }

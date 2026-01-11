@@ -1,11 +1,15 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router'; // ✅ ADD THIS
 import { CourseService, Course } from '../../services/course.service';
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule   // ✅ REQUIRED for routerLink
+  ],
   templateUrl: './course-list.html',
   styleUrls: ['./course-list.css']
 })
@@ -16,38 +20,29 @@ export class CourseList implements OnInit {
 
   constructor(
     private courseService: CourseService,
-    private cdr: ChangeDetectorRef  // Add this
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    console.log('[CourseList] ngOnInit called');
     const trainerId = localStorage.getItem('id');
-    console.log('[CourseList] trainerId:', trainerId);
 
     if (!trainerId) {
       this.error = 'Trainer ID not found. Please login again.';
       this.loading = false;
-      this.cdr.detectChanges();  // Trigger change detection
-      console.error('[CourseList] trainerId missing');
+      this.cdr.detectChanges();
       return;
     }
 
-    console.log('[CourseList] calling backend...');
     this.courseService.getCoursesByTrainer(trainerId).subscribe({
       next: (data) => {
-        console.log('[CourseList] API response:', data);
         this.courses = data;
         this.loading = false;
-        this.cdr.detectChanges();  // Trigger change detection here
+        this.cdr.detectChanges();
       },
-      error: (err) => {
-        console.error('[CourseList] API error:', err);
+      error: () => {
         this.error = 'Failed to load courses';
         this.loading = false;
-        this.cdr.detectChanges();  // Trigger change detection here too
-      },
-      complete: () => {
-        console.log('[CourseList] API completed');
+        this.cdr.detectChanges();
       }
     });
   }

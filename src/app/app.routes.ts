@@ -7,7 +7,7 @@ import { AuthGuard } from './auth/auth-guard';
 import { TrainerAuthGuard } from './auth/trainer-auth.guard';
 import { CourseList } from './dashboard/trainer-dashboard/course-list/course-list';
 import { CreateCourse } from './dashboard/trainer-dashboard/create-course/create-course';
-
+import { EditCourse } from './dashboard/trainer-dashboard/edit-course/edit-course';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -28,9 +28,10 @@ export const routes: Routes = [
   component: TrainerDashboardComponent,
   canActivate: [TrainerAuthGuard],
   children: [
-    { path: '', redirectTo: 'courses', pathMatch: 'full' }, // ✅ ADD THIS
+    { path: '', redirectTo: 'courses', pathMatch: 'full' }, 
     { path: 'courses', component: CourseList },
-    { path: 'create-course', component: CreateCourse }
+    { path: 'create-course', component: CreateCourse },
+    { path: 'courses/edit/:id', component: EditCourse }
   ]
 },
 
