@@ -1,0 +1,43 @@
+<h2>My Courses</h2>
+
+@if (loading) {
+  <div>Loading courses...</div>
+}
+
+@if (error) {
+  <div class="error">
+    {{ error }}
+  </div>
+}
+
+@if (!loading && courses.length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Skill Level</th>
+        <th>Duration (hrs)</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (course of courses; track course.id || $index) {
+        <tr>
+          <td>{{ course.title }}</td>
+          <td>{{ course.skillLevel }}</td>
+          <td>{{ course.durationHours }}</td>
+          <td>
+            <span [class.active]="course.active">
+              {{ course.active ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+@if (!loading && courses.length === 0 && !error) {
+  <div>No courses created yet.</div>
+}

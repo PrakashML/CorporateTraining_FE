@@ -5,6 +5,7 @@ import { TraineeDashboardComponent } from './dashboard/trainee-dashboard/trainee
 import { TrainerDashboardComponent } from './dashboard/trainer-dashboard/trainer-dashboard';
 import { AuthGuard } from './auth/auth-guard';
 import { TrainerAuthGuard } from './auth/trainer-auth.guard';
+import { CourseList } from './dashboard/trainer-dashboard/course-list/course-list';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -12,19 +13,23 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
 
-  // Trainee
+  // Trainee dashboard
   {
     path: 'trainee',
     component: TraineeDashboardComponent,
     canActivate: [AuthGuard]
   },
 
-  // Trainer
+  // Trainer dashboard
   {
-    path: 'trainer',
-    component: TrainerDashboardComponent,
-    canActivate: [TrainerAuthGuard]
-  },
+  path: 'trainer',
+  component: TrainerDashboardComponent,
+  canActivate: [TrainerAuthGuard],
+  children: [
+    { path: '', redirectTo: 'courses', pathMatch: 'full' }, // ✅ ADD THIS
+    { path: 'courses', component: CourseList }
+  ]
+},
 
   { path: '**', redirectTo: 'login' }
 ];

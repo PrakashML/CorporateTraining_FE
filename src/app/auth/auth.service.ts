@@ -42,8 +42,9 @@ export class AuthService {
   }
 
   getRole(): string | null {
-    return typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  }
+  return localStorage.getItem('role');
+}
+
 
   getToken(): string | null {
     return typeof window !== 'undefined' ? localStorage.getItem('token') : null;
