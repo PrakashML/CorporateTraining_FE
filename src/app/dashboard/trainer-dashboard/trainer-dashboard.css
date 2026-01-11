@@ -1,0 +1,32 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #1e293b;
+  color: #fff;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar nav a {
+  display: block;
+  color: #cbd5e1;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.sidebar nav a:hover {
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background: #f1f5f9;
+}
