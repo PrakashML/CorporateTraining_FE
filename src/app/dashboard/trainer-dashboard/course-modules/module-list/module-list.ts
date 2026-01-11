@@ -82,6 +82,21 @@ export class ModuleList implements OnInit, OnDestroy {
       }
     });
   }
+  deleteModule(moduleId: string) {
+  if (!confirm('Are you sure you want to delete this module?')) return;
+
+  this.moduleService.deleteModule(moduleId).subscribe({
+    next: () => {
+      alert('Module deleted successfully');
+      this.loadModules();   // refresh list
+    },
+    error: (err) => {
+      console.error('[ModuleList] Delete failed:', err);
+      alert('Failed to delete module');
+    }
+  });
+}
+
 
   ngOnDestroy(): void {
     this.destroy$.next();

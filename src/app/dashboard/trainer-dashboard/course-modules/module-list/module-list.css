@@ -29,3 +29,33 @@ th {
   padding: 8px 12px;
   cursor: pointer;
 }
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-btn {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-btn:hover {
+  background: #155fa0;
+}
+
+.delete-btn:hover {
+  background: #b71c1c;
+}

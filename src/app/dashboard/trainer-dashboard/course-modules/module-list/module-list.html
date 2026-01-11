@@ -28,6 +28,8 @@
         <th>Title</th>
         <th>Duration (mins)</th>
         <th>Status</th>
+        <th>Actions</th>
+
       </tr>
     </thead>
 
@@ -38,6 +40,22 @@
           <td>{{ module.title }}</td>
           <td>{{ module.durationMinutes }}</td>
           <td>{{ module.active ? 'Active' : 'Inactive' }}</td>
+
+<td class="actions">
+  <button
+  class="edit-btn"
+  [routerLink]="['edit', module.id]">
+  Edit
+</button>
+
+
+  <button
+    class="delete-btn"
+    (click)="deleteModule(module.id)">
+    Delete
+  </button>
+</td>
+
         </tr>
       }
     </tbody>

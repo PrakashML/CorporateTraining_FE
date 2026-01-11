@@ -30,5 +30,24 @@ export class CourseModuleService {
     console.log(payload);
   return this.http.post(this.baseUrl, payload);
 }
+getModuleById(moduleId: string) {
+  return this.http.get<CourseModule>(
+    `${this.baseUrl}/${moduleId}`
+  );
+}
+
+updateModule(moduleId: string, payload: any) {
+  return this.http.put(
+    `${this.baseUrl}/${moduleId}`,
+    payload
+  );
+}
+deleteModule(moduleId: string) {
+  return this.http.delete(
+    `${this.baseUrl}/${moduleId}`,
+    { responseType: 'text' } 
+  );
+}
+
 
 }

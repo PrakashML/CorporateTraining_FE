@@ -10,7 +10,7 @@ import { CreateCourse } from './dashboard/trainer-dashboard/create-course/create
 import { EditCourse } from './dashboard/trainer-dashboard/edit-course/edit-course';
 import { ModuleList } from './dashboard/trainer-dashboard/course-modules/module-list/module-list';
 import { CreateModule } from './dashboard/trainer-dashboard/course-modules/create-module/create-module';
-
+import { EditModule } from './dashboard/trainer-dashboard/course-modules/edit-module/edit-module';
 
 
 
@@ -29,23 +29,32 @@ export const routes: Routes = [
 
   // Trainer dashboard
   {
-  path: 'trainer',
-  component: TrainerDashboardComponent,
-  canActivate: [TrainerAuthGuard],
-  children: [
-    { path: '', redirectTo: 'courses', pathMatch: 'full' }, 
-    { path: 'courses', component: CourseList },
-    { path: 'create-course', component: CreateCourse },
-    { path: 'courses/edit/:id', component: EditCourse },
-    {
-      path: 'courses/:courseId/modules',
-      component: ModuleList,
-      children: [
-        { path: 'create', component: CreateModule }
-      ]
-    }
-  ]
-},
+    path: 'trainer',
+    component: TrainerDashboardComponent,
+    canActivate: [TrainerAuthGuard],
+    children: [
+
+      { path: '', redirectTo: 'courses', pathMatch: 'full' },
+
+      // Courses
+      { path: 'courses', component: CourseList },
+      { path: 'courses/create', component: CreateCourse },
+      { path: 'courses/edit/:id', component: EditCourse },
+
+      // Modules (Nested)
+      {
+        path: 'courses/:courseId/modules',
+        component: ModuleList,
+        children: [
+          { path: 'create', component: CreateModule },
+
+          // ✅ Phase 5.3 - Edit Module
+          { path: 'edit/:moduleId', component: EditModule }
+        ]
+      }
+    ]
+  },
 
   { path: '**', redirectTo: 'login' }
 ];
+
