@@ -1,1 +1,94 @@
-<p>register works!</p>
+<!-- <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-6">
+  <div class="max-w-3xl w-full bg-white shadow-2xl rounded-2xl p-8">
+    <h2 class="text-3xl font-bold text-center mb-6">Create Your Account</h2>
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label>Full Name</label>
+        <input type="text" class="w-full p-3 border rounded-lg" [(ngModel)]="user.name" name="name" required />
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" class="w-full p-3 border rounded-lg" [(ngModel)]="user.email" name="email" required />
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" class="w-full p-3 border rounded-lg" [(ngModel)]="user.password" name="password" required />
+      </div>
+      <div>
+        <label>Role</label>
+        <select class="w-full p-3 border rounded-lg" [(ngModel)]="user.role" name="role" required>
+          <option value="TRAINER">Trainer</option>
+          <option value="TRAINEE">Trainee</option>
+        </select>
+      </div>
+      <button type="submit"
+              class="col-span-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg"
+              [disabled]="loading">
+        {{ loading ? 'Creating Account...' : 'Sign Up' }}
+      </button>
+      <div *ngIf="error" class="col-span-full text-red-600 text-sm text-center">{{ error }}</div>
+    </form>
+    <p class="mt-4 text-center text-gray-600">
+      Already have an account?
+      <a routerLink="/login" class="text-blue-600 font-semibold">Sign in here</a>
+    </p>
+  </div>
+</div> -->
+
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4">
+  <div class="w-full max-w-lg bg-white rounded-xl shadow-xl p-6">
+    <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">Create Account</h2>
+    <p class="text-sm text-center text-gray-500 mb-6">Join and start your journey</p>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-1">Full Name</label>
+        <input type="text" class="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-400 text-sm"
+               [(ngModel)]="user.name" name="name" required placeholder="John Doe"/>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-1">Email</label>
+        <input type="email" class="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-400 text-sm"
+               [(ngModel)]="user.email" name="email" required placeholder="you@example.com"/>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-1">Password</label>
+        <input type="password" class="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-400 text-sm"
+               [(ngModel)]="user.password" name="password" required placeholder="••••••••"/>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-1">Role</label>
+        <select class="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-400 text-sm"
+                [(ngModel)]="user.role" name="role" required>
+          <option value="TRAINER">Trainer</option>
+          <option value="TRAINEE">Trainee</option>
+        </select>
+      </div>
+
+      <div class="col-span-full text-center mt-4">
+        <button type="submit"
+                class="w-full py-2.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition text-sm font-medium"
+                [disabled]="loading">
+          {{ loading ? 'Creating Account...' : 'Sign Up' }}
+        </button>
+      </div>
+
+      <div *ngIf="error" class="col-span-full text-red-600 text-sm text-center">
+        {{ error }}
+      </div>
+    </form>
+
+    <p class="text-center text-gray-600 text-sm mt-4">
+      Already have an account?
+      <a routerLink="/login" class="text-indigo-600 font-medium hover:underline">
+        Sign in
+      </a>
+    </p>
+  </div>
+</div>
+
+
+

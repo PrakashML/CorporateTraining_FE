@@ -1,1 +1,79 @@
-<p>login works!</p>
+<!-- <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col items-center justify-center p-6">
+  <div class="max-w-md w-full bg-white shadow-2xl rounded-2xl p-8">
+    <h4 class="text-3xl font-bold text-center mb-6">Welcome Back!</h4>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="space-y-6">
+      <div>
+        <label>Email</label>
+        <input type="email" class="w-full p-3 border rounded-lg" [(ngModel)]="email" name="email" required />
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" class="w-full p-3 border rounded-lg" [(ngModel)]="password" name="password" required />
+      </div>
+      <div *ngIf="error" class="text-red-600 text-sm">{{ error }}</div>
+      <button type="submit"
+              class="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg"
+              [disabled]="loading">
+        {{ loading ? 'Signing in...' : 'Sign In' }}
+      </button>
+    </form>
+    <p class="mt-4 text-center text-gray-600">
+      Don't have an account?
+      <a routerLink="/signup" class="text-blue-600 font-semibold">Create one</a>
+    </p>
+  </div>
+</div> -->
+
+
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4">
+  <div class="w-full max-w-sm bg-white rounded-xl shadow-xl p-6">
+    <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">Welcome Back</h2>
+    <p class="text-sm text-center text-gray-500 mb-6">Sign in to continue</p>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-1">Email</label>
+        <input
+          type="email"
+          class="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-sm"
+          [(ngModel)]="email"
+          name="email"
+          required
+          placeholder="you@example.com"
+        />
+      </div>
+
+      <div>
+        <label class="block text-gray-700 text-sm font-medium mb-1">Password</label>
+        <input
+          type="password"
+          class="w-full p-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-400 focus:outline-none text-sm"
+          [(ngModel)]="password"
+          name="password"
+          required
+          placeholder="••••••••"
+        />
+      </div>
+
+      <div *ngIf="error" class="text-red-600 text-sm text-center">
+        {{ error }}
+      </div>
+
+      <button
+        type="submit"
+        class="w-full py-2.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition text-sm font-medium"
+        [disabled]="loading"
+      >
+        {{ loading ? 'Signing In...' : 'Sign In' }}
+      </button>
+    </form>
+
+    <p class="text-center text-gray-600 text-sm mt-4">
+      Don’t have an account?
+      <a routerLink="/signup" class="text-indigo-600 font-medium hover:underline">
+        Create one
+      </a>
+    </p>
+  </div>
+</div>
+
