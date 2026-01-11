@@ -25,7 +25,15 @@
     <tbody>
       @for (course of courses; track course.id) {
         <tr>
-          <td>{{ course.title }}</td>
+          <td>
+  <a
+    [routerLink]="['/trainer/courses', course.id, 'modules']"
+    class="course-link"
+  >
+    {{ course.title }}
+  </a>
+</td>
+
           <td>{{ course.skillLevel }}</td>
           <td>{{ course.durationHours }}</td>
           <td>

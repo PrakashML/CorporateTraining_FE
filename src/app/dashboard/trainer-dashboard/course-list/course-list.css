@@ -45,3 +45,12 @@ th {
 .delete-btn:hover {
   text-decoration: underline;
 }
+.course-link {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.course-link:hover {
+  text-decoration: underline;
+}
