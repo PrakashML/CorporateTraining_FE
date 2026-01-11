@@ -39,8 +39,9 @@
     <p><b>Status:</b> {{ assessment.active ? 'Active' : 'Inactive' }}</p>
 
     <div class="actions">
-      <button class="primary" (click)="openQuestions()">
-        Manage Questions ({{ questions.length }})
+      <!-- ✅ UPDATED: Toggle button with dynamic text -->
+      <button class="primary" (click)="toggleQuestions()">
+        {{ showQuestions ? 'Hide Questions' : 'Manage Questions' }} ({{ questions.length }})
       </button>
 
       <button class="danger" (click)="deleteAssessment()">
@@ -51,4 +52,9 @@
   </div>
 }
 
-<router-outlet></router-outlet>
+<!-- ✅ NEW: Conditionally show questions component -->
+@if (showQuestions && assessment) {
+  <div class="questions-container">
+    <router-outlet></router-outlet>
+  </div>
+}

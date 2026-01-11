@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService, Question } from './questions.service';
 
 @Component({
@@ -30,34 +30,35 @@ export class AssessmentQuestions implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private service: QuestionsService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    // ✅ FIXED: Try to get courseId from route hierarchy
-    // Start from current route and traverse up until we find courseId
-    let currentRoute: ActivatedRoute | null = this.route;
+    // ✅ Try multiple ways to get courseId
     
-    while (currentRoute) {
-      const courseId = currentRoute.snapshot.paramMap.get('courseId');
-      if (courseId) {
-        this.courseId = courseId;
-        break;
-      }
-      currentRoute = currentRoute.parent;
+    // Method 1: From navigation state
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras?.state?.['courseId']) {
+      this.courseId = navigation.extras.state['courseId'];
     }
     
-    // Alternative simpler approach - get from the full route path
+    // Method 2: Traverse parent routes
     if (!this.courseId) {
-      // Navigate up to get the assessment route, then its parent
-      this.courseId = this.route.parent?.parent?.snapshot.paramMap.get('courseId')!;
+      let currentRoute: ActivatedRoute | null = this.route;
+      while (currentRoute) {
+        const courseId = currentRoute.snapshot.paramMap.get('courseId');
+        if (courseId) {
+          this.courseId = courseId;
+          break;
+        }
+        currentRoute = currentRoute.parent;
+      }
     }
     
     console.log('[Questions] courseId:', this.courseId);
     console.log('[Questions] Current route:', this.route.snapshot.url);
-    console.log('[Questions] Parent route:', this.route.parent?.snapshot.url);
-    console.log('[Questions] Parent.Parent route:', this.route.parent?.parent?.snapshot.url);
     
     if (!this.courseId) {
       console.error('[Questions] ERROR: courseId is null!');

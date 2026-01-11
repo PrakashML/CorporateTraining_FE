@@ -26,6 +26,9 @@ export class CourseAssessment implements OnInit {
 
   loading = true;
   error = '';
+  
+  // ✅ NEW: Toggle for showing questions
+  showQuestions = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,7 +64,6 @@ export class CourseAssessment implements OnInit {
       error: (err) => {
         console.warn('[Assessment] Load failed:', err);
 
-        // ✅ 404 → No assessment exists → show Create UI
         if (err.status === 404) {
           this.assessment = null;
         } else {
@@ -105,6 +107,7 @@ export class CourseAssessment implements OnInit {
       next: () => {
         alert('Assessment deleted');
         this.assessment = null;
+        this.showQuestions = false; // Hide questions when deleted
         this.cdr.detectChanges();
       },
       error: () => {
@@ -113,14 +116,20 @@ export class CourseAssessment implements OnInit {
     });
   }
 
-  // ---------------- Navigate to Questions ----------------
-  openQuestions() {
-    console.log('[Assessment] Current route:', this.route.snapshot.url);
-    console.log('[Assessment] CourseId:', this.courseId);
-    console.log('[Assessment] Navigating to questions...');
+  // ✅ NEW: Toggle Questions Display
+  toggleQuestions() {
+    this.showQuestions = !this.showQuestions;
+    console.log('[Assessment] Show questions:', this.showQuestions);
     
-    this.router.navigate(['questions'], { relativeTo: this.route })
-      .then(success => console.log('[Assessment] Navigation success:', success))
-      .catch(err => console.error('[Assessment] Navigation error:', err));
+    if (this.showQuestions) {
+      // Navigate to questions route
+      this.router.navigate(['questions'], { 
+        relativeTo: this.route,
+        state: { courseId: this.courseId }
+      });
+    } else {
+      // Navigate back to assessment (remove questions from route)
+      this.router.navigate([], { relativeTo: this.route });
+    }
   }
 }
