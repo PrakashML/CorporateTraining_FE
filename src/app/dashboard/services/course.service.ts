@@ -36,6 +36,12 @@ export class CourseService {
 updateCourse(courseId: string, payload: any) {
   return this.http.put(`${this.baseUrl}/${courseId}`, payload);
 }
+deleteCourse(courseId: string) {
+  return this.http.delete(
+    `${this.baseUrl}/${courseId}`,
+    { responseType: 'text' }
+  );
+}
 
 
 }

@@ -46,4 +46,32 @@ export class CourseList implements OnInit {
       }
     });
   }
+  deleteCourse(courseId: string) {
+  const confirmed = confirm(
+    'Are you sure?\nDeleting this course may affect modules, assessments, and trainees.'
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  this.loading = true;
+  this.cdr.detectChanges();
+
+  this.courseService.deleteCourse(courseId).subscribe({
+    next: () => {
+      // Remove deleted course from UI (no full reload)
+      this.courses = this.courses.filter(c => c.id !== courseId);
+      this.loading = false;
+      this.cdr.detectChanges();
+    },
+    error: (err) => {
+      console.error(err);
+      this.error = 'Failed to delete course';
+      this.loading = false;
+      this.cdr.detectChanges();
+    }
+  });
+}
+
 }

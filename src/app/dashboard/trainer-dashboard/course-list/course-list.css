@@ -23,3 +23,25 @@ th {
   color: red;
   margin-top: 10px;
 }
+.edit-btn {
+  margin-right: 10px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.edit-btn:hover {
+  text-decoration: underline;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  text-decoration: underline;
+}

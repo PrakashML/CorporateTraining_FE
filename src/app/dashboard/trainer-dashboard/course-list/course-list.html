@@ -35,14 +35,22 @@
           </td>
 
           <!-- ✅ ACTIONS COLUMN -->
-          <td>
-            <a
-              [routerLink]="['/trainer/courses/edit', course.id]"
-              class="edit-btn"
-            >
-              Edit
-            </a>
-          </td>
+         <td>
+  <a
+    [routerLink]="['/trainer/courses/edit', course.id]"
+    class="edit-btn"
+  >
+    Edit
+  </a>
+
+  <button
+    class="delete-btn"
+    (click)="deleteCourse(course.id)"
+  >
+    Delete
+  </button>
+</td>
+
         </tr>
       }
     </tbody>
