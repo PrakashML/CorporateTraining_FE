@@ -23,4 +23,11 @@ export class CourseService {
   getCoursesByTrainer(trainerId: string): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.baseUrl}/trainer/${trainerId}`);
   }
+  createCourse(course: any, trainerId: string) {
+  return this.http.post(
+    `${this.baseUrl}/create?trainerId=${trainerId}`,
+    course
+  );
+}
+
 }
