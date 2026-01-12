@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { NavbarComponent } from "../../shared/navbar.component";
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-trainee-dashboard',
   templateUrl: './trainee-dashboard.component.html',
-  styleUrls: ['./trainee-dashboard.component.css']
+  styleUrls: ['./trainee-dashboard.component.css'],
+  imports: [NavbarComponent]
 })
+
 export class TraineeDashboardComponent implements OnInit {
 
   name: string | null = '';

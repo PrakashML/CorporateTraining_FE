@@ -30,7 +30,9 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear();
+    if (typeof window !== 'undefined') {
+      localStorage.clear();
+    }
     this.router.navigate(['/login']);
   }
 
