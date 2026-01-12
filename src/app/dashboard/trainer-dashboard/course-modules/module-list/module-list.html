@@ -1,0 +1,67 @@
+<div class="header">
+  <h2>Course Modules</h2>
+
+  <button
+    class="add-btn"
+    [routerLink]="['create']"
+  >
+    + Add Module
+  </button>
+</div>
+
+<!-- ✅ CHILD ROUTE RENDERS HERE -->
+<router-outlet></router-outlet>
+
+@if (loading) {
+  <div>Loading modules...</div>
+}
+
+@if (error) {
+  <div class="error">{{ error }}</div>
+}
+
+@if (!loading && modules.length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Duration (mins)</th>
+        <th>Status</th>
+        <th>Actions</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (module of modules; track module.id) {
+        <tr>
+          <td>{{ module.moduleOrder }}</td>
+          <td>{{ module.title }}</td>
+          <td>{{ module.durationMinutes }}</td>
+          <td>{{ module.active ? 'Active' : 'Inactive' }}</td>
+
+<td class="actions">
+  <button
+  class="edit-btn"
+  [routerLink]="['edit', module.id]">
+  Edit
+</button>
+
+
+  <button
+    class="delete-btn"
+    (click)="deleteModule(module.id)">
+    Delete
+  </button>
+</td>
+
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
+@if (!loading && modules.length === 0 && !error) {
+  <div>No modules added for this course yet.</div>
+}

@@ -1,0 +1,44 @@
+.card {
+  max-width: 500px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.primary {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.danger {
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}

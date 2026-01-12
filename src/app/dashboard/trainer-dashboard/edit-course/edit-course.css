@@ -1,0 +1,31 @@
+form {
+  max-width: 500px;
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+}
+
+button {
+  margin-top: 20px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
