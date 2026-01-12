@@ -1,87 +1,261 @@
-.card {
-  padding: 16px;
-  background: #fff;
-  border-radius: 8px;
+:host {
+  display: block;
+  --text-main: #1e293b;
+  --card-bg: #ffffff;
+  --radius-card: 12px;
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --primary-color: #2563eb;
+  --border-color: #e2e8f0;
+  /* Adjusted based on question-card border */
+  --text-secondary: #64748b;
+  /* Adjusted based on empty-state and option-marker */
+  --radius-elem: 8px;
+  --transition-speed: 0.2s;
+  --primary-hover: #1d4ed8;
+  --danger-color: #ef4444;
+  --danger-hover: #b91c1c;
+  /* Inferred from error color */
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --secondary-bg: #f8fafc;
+  --bg-color: #f1f5f9;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+/* --- Add Question Card --- */
+.add-card {
+  max-width: 800px;
+  background: var(--card-bg);
+  padding: 32px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 40px;
+  border-top: 4px solid var(--primary-color);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-top: 0;
   margin-bottom: 20px;
 }
 
-textarea, input, select {
-  width: 100%;
-  margin-top: 6px;
-  padding: 6px;
+/* --- Form Grouping --- */
+.form-group {
+  margin-bottom: 16px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
 }
 
-td, th {
-  border: 1px solid #ddd;
-  padding: 8px;
+textarea,
+input,
+select {
+  width: 100%;
+  padding: 10px 14px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-elem);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* --- Grid for Options Inputs --- */
+.options-input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* --- Buttons --- */
+.add-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: var(--radius-elem);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  font-size: 0.9rem;
+  border: none;
 }
 
 .primary {
-  background: #1976d2;
-  color: #fff;
-  border: none;
-  padding: 6px 12px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.primary:hover {
+  background-color: var(--primary-hover);
 }
 
 .danger {
-  background: #d32f2f;
-  color: white;
-  border: none;
-  padding: 6px 12px;
+  background-color: #fef2f2;
+  color: var(--danger-color);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  border: 1px solid #fecaca;
 }
 
-.error {
-  color: red;
-}
-.questions-container {
-  margin-top: 2rem;
-  animation: slideDown 0.3s ease-out;
+.danger:hover {
+  background-color: #fee2e2;
+  color: var(--danger-hover);
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* --- Questions List (Grid of Cards) --- */
+.questions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
 }
 
-.actions {
+.question-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border-color);
 }
 
-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.question-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.q-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.q-text {
   font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+  line-height: 1.5;
 }
 
-button.primary {
-  background-color: #007bff;
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  /* Push footer down */
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: var(--radius-elem);
+  background-color: var(--secondary-bg);
+  border: 2px solid var(--border-color);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.option-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  margin-right: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: white;
+  flex-shrink: 0;
+}
+
+/* Correct Option Highlight */
+.option-item.correct {
+  background-color: #f0fdf4;
+  /* Green 50 */
+  border-color: #22c55e;
+  /* Green 500 */
+  color: #15803d;
+  /* Green 700 */
+}
+
+.option-item.correct .option-marker {
+  border-color: #22c55e;
+  background-color: #22c55e;
   color: white;
 }
 
-button.primary:hover {
-  background-color: #0056b3;
+.card-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--bg-color);
+  display: flex;
+  justify-content: flex-end;
 }
 
-button.danger {
-  background-color: #dc3545;
-  color: white;
+/* --- States --- */
+.error {
+  padding: 12px 16px;
+  background-color: #fef2f2;
+  color: var(--danger-color);
+  border-radius: var(--radius-elem);
+  margin-bottom: 20px;
 }
 
-button.danger:hover {
-  background-color: #c82333;
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border-radius: var(--radius-elem);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .options-input-grid {
+    grid-template-columns: 1fr;
+  }
 }

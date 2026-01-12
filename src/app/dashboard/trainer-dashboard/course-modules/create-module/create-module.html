@@ -1,40 +1,36 @@
-<h3>Add Module</h3>
+<div class="form-container">
+  <h3>Add Module</h3>
 
-@if (error) {
-  <div class="error">{{ error }}</div>
-}
+  @if (error) {
+  <div class="alert alert-error">{{ error }}</div>
+  }
 
-<form (ngSubmit)="submit()">
+  <form (ngSubmit)="submit()">
 
-  <label>Module Order *</label>
-  <input
-    type="number"
-    [(ngModel)]="moduleOrder"
-    name="moduleOrder"
-  />
+    <div class="form-group">
+      <label>Module Order *</label>
+      <input type="number" [(ngModel)]="moduleOrder" name="moduleOrder" placeholder="e.g. 1" />
+    </div>
 
-  <label>Title *</label>
-  <input
-    type="text"
-    [(ngModel)]="title"
-    name="title"
-  />
+    <div class="form-group">
+      <label>Title *</label>
+      <input type="text" [(ngModel)]="title" name="title" placeholder="Module title" />
+    </div>
 
-  <label>Video URL</label>
-  <input
-    type="text"
-    [(ngModel)]="videoUrl"
-    name="videoUrl"
-  />
+    <div class="form-group">
+      <label>Video URL</label>
+      <input type="text" [(ngModel)]="videoUrl" name="videoUrl" placeholder="https://..." />
+    </div>
 
-  <label>Duration (minutes)</label>
-  <input
-    type="number"
-    [(ngModel)]="durationMinutes"
-    name="durationMinutes"
-  />
+    <div class="form-group">
+      <label>Duration (minutes)</label>
+      <input type="number" [(ngModel)]="durationMinutes" name="durationMinutes" placeholder="e.g. 45" />
+    </div>
 
-  <button type="submit" [disabled]="loading">
-    {{ loading ? 'Creating...' : 'Create Module' }}
-  </button>
-</form>
+    <div class="form-actions">
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creating...' : 'Create Module' }}
+      </button>
+    </div>
+  </form>
+</div>
