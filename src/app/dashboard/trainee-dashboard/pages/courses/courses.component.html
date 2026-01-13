@@ -1,0 +1,32 @@
+<div>
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Available Courses</h2>
+
+  <div *ngIf="loading" class="text-center py-20">
+    <div class="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+  </div>
+
+  <div *ngIf="!loading && courses.length === 0" class="text-center text-gray-500">
+    No courses available
+  </div>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div *ngFor="let course of courses"
+         class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
+      <h3 class="text-lg font-bold text-gray-900 mb-2">{{ course.title }}</h3>
+      <p class="text-gray-600 mb-3">{{ course.description }}</p>
+      <p class="text-sm text-gray-500 mb-4">
+        Level: {{ course.skillLevel }} | Duration: {{ course.durationHours }} hrs
+      </p>
+
+      <button
+        (click)="enroll(course.id)"
+        [disabled]="enrolledIds.includes(course.id)"
+        class="w-full py-2 rounded-md font-semibold transition-all"
+        [ngClass]="enrolledIds.includes(course.id)
+          ? 'bg-green-100 text-green-700 cursor-not-allowed'
+          : 'bg-blue-600 text-white hover:bg-blue-700'">
+        {{ enrolledIds.includes(course.id) ? '✓ Enrolled' : 'Enroll Now' }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,11 @@ import { CreateModule } from './dashboard/trainer-dashboard/course-modules/creat
 import { EditModule } from './dashboard/trainer-dashboard/course-modules/edit-module/edit-module';
 import { CourseAssessment } from './dashboard/trainer-dashboard/course-assessment/course-assessment';
 import { AssessmentQuestions } from './dashboard/trainer-dashboard/course-assessment/questions/questions';
+import { TraineeHomeComponent } from './dashboard/trainee-dashboard/pages/home/home.component';
+import { CoursesComponent } from './dashboard/trainee-dashboard/pages/courses/courses.component';
+import { EnrolledCoursesComponent } from './dashboard/trainee-dashboard/pages/enrolled-courses/enrolled-courses.component';
+import { AssessmentsComponent } from './dashboard/trainee-dashboard/pages/assessments/assessments.component';
+import { CertificationsComponent } from './dashboard/trainee-dashboard/pages/certifications/certifications.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,7 +29,15 @@ export const routes: Routes = [
   {
     path: 'trainee',
     component: TraineeDashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: TraineeHomeComponent }, // 🏠 Default home screen
+      { path: 'home', component: TraineeHomeComponent },
+      { path: 'courses', component: CoursesComponent },
+      { path: 'enrolled', component: EnrolledCoursesComponent },
+      { path: 'assessments', component: AssessmentsComponent },
+      { path: 'certifications', component: CertificationsComponent }
+    ]
   },
 
   // Trainer dashboard

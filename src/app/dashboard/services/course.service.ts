@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Course {
@@ -14,11 +14,18 @@ export interface Course {
 @Injectable({
   providedIn: 'root'
 })
+
 export class CourseService {
 
   private baseUrl = 'http://localhost:8090/api/courses';
 
   constructor(private http: HttpClient) {}
+
+  // ✅ Get all courses (public for trainees)
+  getAllCourses(): Observable<any[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<any[]>(this.baseUrl, { headers });
+  }
 
   getCoursesByTrainer(trainerId: string): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.baseUrl}/trainer/${trainerId}`);
@@ -30,8 +37,8 @@ export class CourseService {
   );
   }
   getCourseById(courseId: string) {
-  return this.http.get<Course>(`${this.baseUrl}/${courseId}`);
-}
+    return this.http.get<Course>(`${this.baseUrl}/${courseId}`);
+  }
 
 updateCourse(courseId: string, payload: any) {
   return this.http.put(`${this.baseUrl}/${courseId}`, payload);
@@ -42,6 +49,14 @@ deleteCourse(courseId: string) {
     { responseType: 'text' }
   );
 }
+
+private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  }
 
 
 }

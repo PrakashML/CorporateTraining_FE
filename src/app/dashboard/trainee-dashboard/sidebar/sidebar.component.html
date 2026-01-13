@@ -1,0 +1,44 @@
+<div class="h-screen w-64 bg-gradient-to-b from-blue-700 to-blue-500 text-white flex flex-col">
+  <div class="text-center py-6 text-2xl font-bold border-b border-blue-400">
+    Trainee Panel
+  </div>
+
+  <nav class="flex-1 p-4 space-y-2">
+    <a routerLink="home"
+       routerLinkActive="bg-blue-800"
+       class="block px-4 py-3 rounded-md font-medium hover:bg-blue-800 transition-all">
+      🏠 Home
+    </a>
+
+    <a routerLink="courses"
+       routerLinkActive="bg-blue-800"
+       class="block px-4 py-3 rounded-md font-medium hover:bg-blue-800 transition-all">
+      📚 Courses
+    </a>
+
+    <a routerLink="enrolled"
+       routerLinkActive="bg-blue-800"
+       class="block px-4 py-3 rounded-md font-medium hover:bg-blue-800 transition-all">
+      🎓 Enrolled Courses
+    </a>
+
+    <a routerLink="assessments"
+       routerLinkActive="bg-blue-800"
+       class="block px-4 py-3 rounded-md font-medium hover:bg-blue-800 transition-all">
+      🧠 Assessments
+    </a>
+
+    <a routerLink="certifications"
+       routerLinkActive="bg-blue-800"
+       class="block px-4 py-3 rounded-md font-medium hover:bg-blue-800 transition-all">
+      🏆 Certifications
+    </a>
+  </nav>
+
+  <div class="p-4 border-t border-blue-400">
+    <button (click)="logout()"
+      class="w-full py-2 bg-white text-blue-700 rounded-md font-semibold hover:bg-gray-100">
+      Logout
+    </button>
+  </div>
+</div>

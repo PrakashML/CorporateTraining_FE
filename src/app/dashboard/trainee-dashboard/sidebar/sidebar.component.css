@@ -1,0 +1,7 @@
+a[routerLinkActive] {
+  transition: background 0.2s;
+}
+
+a.active {
+  background-color: #6c3da1;
+}

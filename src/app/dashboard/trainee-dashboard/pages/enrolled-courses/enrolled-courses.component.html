@@ -1,0 +1,12 @@
+<div>
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">My Enrolled Courses</h2>
+  <div *ngIf="enrolledCourses.length === 0" class="text-gray-500">You haven’t enrolled in any courses yet.</div>
+
+  <ul class="space-y-4">
+    <li *ngFor="let c of enrolledCourses" class="bg-white p-4 rounded-xl shadow">
+      <p><strong>Course Id:</strong> {{ c.courseId }}</p>
+      <p><strong>Status:</strong> {{ c.status }}</p>
+      <p><strong>Enrolled On:</strong> {{ c.enrolledAt | date:'medium' }}</p>
+    </li>
+  </ul>
+</div>

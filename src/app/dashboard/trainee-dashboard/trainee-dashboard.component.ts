@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import { NavbarComponent } from "../../shared/navbar.component";
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'app-trainee-dashboard',
+  standalone: true,
+  imports: [RouterOutlet, SidebarComponent],
   templateUrl: './trainee-dashboard.component.html',
-  styleUrls: ['./trainee-dashboard.component.css'],
-  imports: [NavbarComponent]
+  styleUrls: ['./trainee-dashboard.component.css']
 })
 
 export class TraineeDashboardComponent implements OnInit {

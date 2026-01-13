@@ -1,15 +1,7 @@
-<app-navbar></app-navbar>
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col items-center justify-center p-6">
-  <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-2xl text-center">
-    <h2 class="text-3xl font-bold text-gray-800 mb-4">Welcome, {{ name }} 👋</h2>
-    <p class="text-gray-600 mb-2">Email: {{ email }}</p>
-    <p class="text-gray-600 mb-6">Role: {{ role }}</p>
+<div class="flex min-h-screen">
+  <app-sidebar></app-sidebar>
 
-    <div class="space-x-4">
-      <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all"
-              (click)="logout()">
-        Logout
-      </button>
-    </div>
+  <div class="flex-1 bg-gray-50 p-8 overflow-auto">
+    <router-outlet></router-outlet>
   </div>
 </div>
