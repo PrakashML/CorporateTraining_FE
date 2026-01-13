@@ -1,85 +1,241 @@
+:host {
+  display: block;
+}
+
+/* --- Page Header --- */
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+/* --- Container & Card --- */
+.table-container {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+/* --- Table Styling --- */
 table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
-}
-
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #e2e8f0;
   text-align: left;
 }
 
+thead {
+  background-color: var(--secondary-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
 th {
-  background-color: #f8fafc;
-}
-
-.active {
-  color: green;
-  font-weight: bold;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-}
-.edit-btn {
-  margin-right: 10px;
-  color: #2563eb;
-  text-decoration: none;
+  padding: 16px 24px;
+  font-size: 0.75rem;
   font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
 }
 
-.edit-btn:hover {
-  text-decoration: underline;
+tbody tr {
+  border-bottom: 1px solid var(--bg-color);
+  transition: background-color var(--transition-speed);
 }
 
-.delete-btn {
-  background: none;
-  border: none;
-  color: #dc2626;
-  font-weight: 600;
-  cursor: pointer;
+tbody tr:hover {
+  background-color: var(--secondary-bg);
 }
 
-.delete-btn:hover {
-  text-decoration: underline;
+tbody tr:last-child {
+  border-bottom: none;
 }
-.course-link {
-  color: #2563eb;
+
+td {
+  padding: 16px 24px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
+/* --- Typography in Table --- */
+.course-title-link {
+  color: var(--primary-color);
   font-weight: 600;
   text-decoration: none;
+  font-size: 1rem;
 }
 
-.course-link:hover {
+.course-title-link:hover {
   text-decoration: underline;
+  color: var(--primary-hover);
 }
-.actions {
+
+/* --- Status Badges --- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--bg-color);
+  color: var(--text-secondary);
+}
+
+.status-badge.active {
+  background-color: #dcfce7;
+  /* Keep specific semantic colors for status */
+  color: #166534;
+}
+
+.status-badge.inactive {
+  background-color: var(--bg-color);
+  color: var(--text-secondary);
+}
+
+/* --- Actions --- */
+.actions-cell {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
-.modules-btn {
-  background: #1976d2;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 4px;
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 6px;
   text-decoration: none;
+  transition: all var(--transition-speed);
+  border: 1px solid transparent;
+  cursor: pointer;
 }
 
-.assessment-btn {
-  background: #2e7d32;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 4px;
-  text-decoration: none;
+.btn-modules {
+  background-color: #eff6ff;
+  /* Light Blue */
+  color: var(--primary-color);
 }
 
-.modules-btn:hover {
-  background: #125ca1;
+.btn-modules:hover {
+  background-color: #dbeafe;
 }
 
-.assessment-btn:hover {
-  background: #1b5e20;
+.btn-assessment {
+  background-color: #f0fdf4;
+  /* Light Green */
+  color: #15803d;
+}
+
+.btn-assessment:hover {
+  background-color: #dcfce7;
+}
+
+.btn-edit {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.btn-edit:hover {
+  background-color: var(--secondary-bg);
+  border-color: #cbd5e1;
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: var(--danger-color);
+}
+
+.btn-delete:hover {
+  background-color: #fef2f2;
+  color: var(--danger-hover);
+}
+
+/* --- States --- */
+.loading-state,
+.empty-state,
+.error-state {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border-radius: var(--radius-elem);
+  margin-top: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.error-state {
+  color: var(--danger-color);
+  background-color: #fef2f2;
+}
+
+
+/* --- Responsive / Mobile Card View --- */
+@media (max-width: 768px) {
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tbody tr {
+    background: var(--card-bg);
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    padding: 16px;
+  }
+
+  tbody tr:last-child {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  td {
+    padding: 8px 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    margin-right: 12px;
+    display: inline-block;
+  }
+
+  td:first-child {
+    font-size: 1.125rem;
+    border-bottom: 1px solid var(--bg-color);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+  }
+
+  td:first-child::before {
+    display: none;
+  }
+
+  .actions-cell {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--bg-color);
+    justify-content: flex-end;
+  }
 }

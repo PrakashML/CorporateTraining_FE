@@ -1,61 +1,233 @@
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
+:host {
+  display: block;
 }
 
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-th {
-  background-color: #f8fafc;
-}
-
-.error {
-  color: red;
-}
+/* --- Header --- */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
 }
 
 .add-btn {
-  background: #16a34a;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 10px 20px;
+  border-radius: var(--radius-elem);
+  font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--transition-speed);
+  font-size: 0.95rem;
 }
-.actions {
+
+.add-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* --- Table Container --- */
+.table-container {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+thead {
+  background-color: var(--secondary-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  padding: 16px 24px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--bg-color);
+  transition: background-color var(--transition-speed);
+}
+
+tbody tr:hover {
+  background-color: var(--secondary-bg);
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+td {
+  padding: 16px 24px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
+/* --- Status Badge --- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--bg-color);
+  color: var(--text-secondary);
+}
+
+.status-badge.active {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.inactive {
+  background-color: var(--bg-color);
+  color: var(--text-secondary);
+}
+
+/* --- Actions --- */
+.actions-cell {
   display: flex;
   gap: 8px;
+  justify-content: flex-start;
 }
 
-.edit-btn {
-  background: #1976d2;
-  color: white;
-  border: none;
-  padding: 4px 10px;
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all var(--transition-speed);
+  border: 1px solid transparent;
   cursor: pointer;
-  border-radius: 4px;
 }
 
-.delete-btn {
-  background: #d32f2f;
-  color: white;
-  border: none;
-  padding: 4px 10px;
-  cursor: pointer;
-  border-radius: 4px;
+.btn-edit {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
 }
 
-.edit-btn:hover {
-  background: #155fa0;
+.btn-edit:hover {
+  background-color: var(--secondary-bg);
+  border-color: #cbd5e1;
 }
 
-.delete-btn:hover {
-  background: #b71c1c;
+.btn-delete {
+  background-color: transparent;
+  color: var(--danger-color);
+}
+
+.btn-delete:hover {
+  background-color: #fef2f2;
+}
+
+
+/* --- States --- */
+.loading-state,
+.empty-state,
+.error-state {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border-radius: var(--radius-elem);
+  margin-top: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.error-state {
+  color: var(--danger-color);
+  background-color: #fef2f2;
+}
+
+
+/* --- Responsive Mobile --- */
+@media (max-width: 768px) {
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tbody tr {
+    background: var(--card-bg);
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    padding: 16px;
+  }
+
+  td {
+    padding: 8px 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    margin-right: 12px;
+  }
+
+  /* Make title stand out */
+  td:nth-child(2) {
+    /* Title is usually 2nd if Order is 1st */
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--bg-color);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  td:nth-child(2)::before {
+    display: none;
+  }
+
+  .actions-cell {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--bg-color);
+    justify-content: flex-end;
+  }
 }

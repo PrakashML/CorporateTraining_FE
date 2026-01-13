@@ -1,14 +1,21 @@
-<div class="dashboard">
+<div class="dashboard-container">
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <h2>Trainer Panel</h2>
+    <div class="sidebar-header">
+      <h2>Trainer Panel</h2>
+    </div>
 
-    <nav>
-      <a routerLink="courses">My Courses</a>
-      <a routerLink="create-course">Create Course</a>
+    <nav class="sidebar-nav">
+      <a routerLink="courses" routerLinkActive="active-link">
+        My Courses
+      </a>
+      <a routerLink="courses/create" routerLinkActive="active-link">
+        Create Course
+      </a>
     </nav>
-     <div class="logout-container">
+
+    <div class="sidebar-footer">
       <button class="logout-btn" (click)="logout()">
         Logout
       </button>
@@ -17,7 +24,9 @@
 
   <!-- Main Content -->
   <main class="content">
-    <router-outlet></router-outlet>
+    <div class="main-scroll-area">
+      <router-outlet></router-outlet>
+    </div>
   </main>
 
 </div>

@@ -1,60 +1,59 @@
 <h2>Course Assessment</h2>
 
 @if (loading) {
-  <div>Loading...</div>
+<div>Loading...</div>
 }
 
 @if (error) {
-  <p class="error">{{ error }}</p>
+<div class="error">{{ error }}</div>
 }
 
 <!-- ================= CREATE ================= -->
 @if (!loading && !assessment) {
-  <div class="card">
+<div class="card">
 
-    <h3>No Assessment Found</h3>
+  <h3>No Assessment Found</h3>
+  <p>Create an assessment to test student knowledge.</p>
 
-    <label>Pass Percentage</label>
-    <input
-      type="number"
-      [(ngModel)]="passPercentage"
-      min="1"
-      max="100" />
+  <label>Pass Percentage</label>
+  <input type="number" [(ngModel)]="passPercentage" min="1" max="100" />
 
-    <button class="primary" (click)="createAssessment()">
+  <div class="actions">
+    <button class="btn primary" (click)="createAssessment()">
       Create Assessment
     </button>
-
   </div>
+
+</div>
 }
 
 <!-- ================= VIEW ================= -->
 @if (!loading && assessment) {
-  <div class="card">
+<div class="card">
 
-    <h3>Assessment Details</h3>
+  <h3>Assessment Details</h3>
 
-    <p><b>Assessment ID:</b> {{ assessment.id }}</p>
-    <p><b>Pass Percentage:</b> {{ assessment.passPercentage }}%</p>
-    <p><b>Status:</b> {{ assessment.active ? 'Active' : 'Inactive' }}</p>
+  <p><b>Assessment ID:</b> {{ assessment.id }}</p>
+  <p><b>Pass Percentage:</b> {{ assessment.passPercentage }}%</p>
+  <p><b>Status:</b> {{ assessment.active ? 'Active' : 'Inactive' }}</p>
 
-    <div class="actions">
-      <!-- ✅ UPDATED: Toggle button with dynamic text -->
-      <button class="primary" (click)="toggleQuestions()">
-        {{ showQuestions ? 'Hide Questions' : 'Manage Questions' }} ({{ questions.length }})
-      </button>
+  <div class="actions">
+    <!-- ✅ UPDATED: Toggle button with dynamic text -->
+    <button class="btn primary" (click)="toggleQuestions()">
+      {{ showQuestions ? 'Hide Questions' : 'Manage Questions' }} ({{ questions.length }})
+    </button>
 
-      <button class="danger" (click)="deleteAssessment()">
-        Delete Assessment
-      </button>
-    </div>
-
+    <button class="btn danger" (click)="deleteAssessment()">
+      Delete Assessment
+    </button>
   </div>
+
+</div>
 }
 
 <!-- ✅ NEW: Conditionally show questions component -->
 @if (showQuestions && assessment) {
-  <div class="questions-container">
-    <router-outlet></router-outlet>
-  </div>
+<div class="questions-container">
+  <router-outlet></router-outlet>
+</div>
 }

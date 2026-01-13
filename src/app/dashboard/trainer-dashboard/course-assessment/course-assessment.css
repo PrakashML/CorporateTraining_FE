@@ -1,44 +1,118 @@
-.card {
-  max-width: 500px;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+:host {
+  display: block;
 }
 
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+/* --- Card Layout --- */
+.card {
+  max-width: 600px;
+  background: var(--card-bg);
+  padding: 32px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-top: 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+/* --- Form/Details --- */
 label {
   display: block;
-  margin-top: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  margin-top: 16px;
 }
 
 input {
   width: 100%;
-  padding: 6px;
-  margin-top: 4px;
+  padding: 10px 14px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-elem);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: border-color 0.2s;
 }
 
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+p {
+  margin: 12px 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+b {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* --- Actions --- */
 .actions {
   display: flex;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--bg-color);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: var(--radius-elem);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  font-size: 0.9rem;
+  border: none;
 }
 
 .primary {
-  background: #1976d2;
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.primary:hover {
+  background-color: var(--primary-hover);
 }
 
 .danger {
-  background: #d32f2f;
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  cursor: pointer;
+  background-color: var(--danger-color);
+  color: white;
 }
 
+.danger:hover {
+  background-color: var(--danger-hover);
+}
+
+/* --- States --- */
 .error {
-  color: red;
+  padding: 12px 16px;
+  background-color: #fef2f2;
+  color: var(--danger-color);
+  border-radius: var(--radius-elem);
+  margin-bottom: 20px;
 }

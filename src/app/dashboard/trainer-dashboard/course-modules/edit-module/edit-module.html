@@ -15,49 +15,32 @@
 
     <div class="field">
       <label>Module Order</label>
-      <input
-        type="number"
-        [(ngModel)]="moduleOrder"
-        name="moduleOrder"
-        required />
+      <input type="number" [(ngModel)]="moduleOrder" name="moduleOrder" required />
     </div>
 
     <div class="field">
       <label>Title</label>
-      <input
-        type="text"
-        [(ngModel)]="title"
-        name="title"
-        required />
+      <input type="text" [(ngModel)]="title" name="title" required />
     </div>
 
     <div class="field">
       <label>Video URL</label>
-      <input
-        type="text"
-        [(ngModel)]="videoUrl"
-        name="videoUrl" />
+      <input type="text" [(ngModel)]="videoUrl" name="videoUrl" />
     </div>
 
     <div class="field">
       <label>Duration (Minutes)</label>
-      <input
-        type="number"
-        [(ngModel)]="durationMinutes"
-        name="durationMinutes"
-        required />
+      <input type="number" [(ngModel)]="durationMinutes" name="durationMinutes" required />
     </div>
 
     <div class="actions">
-      <button type="submit" class="btn primary">
-        Update Module
+      <!-- Cancel (Secondary) FIRST on the left/right depending on flex -->
+      <button type="button" class="btn secondary" (click)="router.navigate(['/trainer/courses', courseId, 'modules'])">
+        Cancel
       </button>
 
-      <button
-        type="button"
-        class="btn secondary"
-        (click)="router.navigate(['/trainer/courses', courseId, 'modules'])">
-        Cancel
+      <button type="submit" class="btn primary">
+        Update Module
       </button>
     </div>
 

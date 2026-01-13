@@ -1,22 +1,23 @@
 <h2>My Courses</h2>
 
 @if (loading) {
-  <div>Loading courses...</div>
+<div class="loading-state">Loading courses...</div>
 }
 
 @if (error) {
-  <div class="error">
-    {{ error }}
-  </div>
+<div class="error-state">
+  {{ error }}
+</div>
 }
 
 @if (!loading && courses.length > 0) {
+<div class="table-container">
   <table>
     <thead>
       <tr>
         <th>Title</th>
         <th>Skill Level</th>
-        <th>Duration (hrs)</th>
+        <th>Duration</th>
         <th>Status</th>
         <th>Actions</th>
       </tr>
@@ -24,68 +25,52 @@
 
     <tbody>
       @for (course of courses; track course.id) {
-        <tr>
-          <td>
-  <a
-    [routerLink]="['/trainer/courses', course.id, 'modules']"
-    class="course-link"
-  >
-    {{ course.title }}
-  </a>
-</td>
+      <tr>
+        <td data-label="Title">
+          <a [routerLink]="['/trainer/courses', course.id, 'modules']" class="course-title-link">
+            {{ course.title }}
+          </a>
+        </td>
 
-          <td>{{ course.skillLevel }}</td>
-          <td>{{ course.durationHours }}</td>
-          <td>
-            <span [class.active]="course.active">
-              {{ course.active ? 'Active' : 'Inactive' }}
-            </span>
-          </td>
+        <td data-label="Skill Level">{{ course.skillLevel }}</td>
+        <td data-label="Duration">{{ course.durationHours }} hrs</td>
 
-          <!-- ✅ ACTIONS COLUMN -->
-        <td class="actions">
+        <td data-label="Status">
+          <span class="status-badge" [class.active]="course.active" [class.inactive]="!course.active">
+            {{ course.active ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
 
-  <!-- ✅ Modules -->
-  <a
-    [routerLink]="['/trainer/courses', course.id, 'modules']"
-    class="modules-btn"
-  >
-    Modules
-  </a>
+        <!-- Actions -->
+        <td class="actions-cell" data-label="Actions">
 
-  <!-- ✅ Assessment -->
-  <a
-    [routerLink]="['/trainer/courses', course.id, 'assessment']"
-    class="assessment-btn"
-  >
-    Assessment
-  </a>
+          <!-- Modules -->
+          <a [routerLink]="['/trainer/courses', course.id, 'modules']" class="btn-action btn-modules">
+            Modules
+          </a>
 
-  <!-- ✏️ Edit -->
-  <a
-    [routerLink]="['/trainer/courses/edit', course.id]"
-    class="edit-btn"
-  >
-    Edit
-  </a>
+          <!-- Assessment -->
+          <a [routerLink]="['/trainer/courses', course.id, 'assessment']" class="btn-action btn-assessment">
+            Assessment
+          </a>
 
-  <!-- 🗑 Delete -->
-  <button
-    class="delete-btn"
-    (click)="deleteCourse(course.id)"
-  >
-    Delete
-  </button>
+          <!-- Edit -->
+          <a [routerLink]="['/trainer/courses/edit', course.id]" class="btn-action btn-edit">
+            Edit
+          </a>
 
-</td>
-
-
-        </tr>
+          <!-- Delete -->
+          <button class="btn-action btn-delete" (click)="deleteCourse(course.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
       }
     </tbody>
   </table>
+</div>
 }
 
 @if (!loading && courses.length === 0 && !error) {
-  <div>No courses created yet.</div>
+<div class="empty-state">No courses created yet.</div>
 }

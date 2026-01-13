@@ -1,57 +1,86 @@
 <h2>Assessment Questions</h2>
 
 @if (loading) {
-  <p>Loading questions...</p>
+<p>Loading questions...</p>
 }
 
 @if (error) {
-  <p class="error">{{ error }}</p>
+<div class="error">{{ error }}</div>
 }
 
 <!-- ================= ADD FORM ================= -->
-<div class="card">
-
+<div class="add-card">
   <h3>Add Question</h3>
 
-  <textarea [(ngModel)]="questionText" placeholder="Question"></textarea>
+  <div class="form-group">
+    <textarea [(ngModel)]="questionText" placeholder="Enter question text here..."></textarea>
+  </div>
 
-  <input [(ngModel)]="optionA" placeholder="Option A">
-  <input [(ngModel)]="optionB" placeholder="Option B">
-  <input [(ngModel)]="optionC" placeholder="Option C">
-  <input [(ngModel)]="optionD" placeholder="Option D">
+  <div class="form-group">
+    <label>Options</label>
+    <div class="options-input-grid">
+      <input [(ngModel)]="optionA" placeholder="Option A">
+      <input [(ngModel)]="optionB" placeholder="Option B">
+      <input [(ngModel)]="optionC" placeholder="Option C">
+      <input [(ngModel)]="optionD" placeholder="Option D">
+    </div>
+  </div>
 
-  <select [(ngModel)]="correctOption">
-    <option value="A">Correct: A</option>
-    <option value="B">Correct: B</option>
-    <option value="C">Correct: C</option>
-    <option value="D">Correct: D</option>
-  </select>
+  <div class="form-group">
+    <label>Correct Option</label>
+    <select [(ngModel)]="correctOption">
+      <option value="A">Option A</option>
+      <option value="B">Option B</option>
+      <option value="C">Option C</option>
+      <option value="D">Option D</option>
+    </select>
+  </div>
 
-  <button class="primary" (click)="addQuestion()">Add</button>
-
+  <div class="add-btn-container">
+    <button class="btn primary" (click)="addQuestion()">Add Question</button>
+  </div>
 </div>
 
-<!-- ================= TABLE ================= -->
+<!-- ================= LIST (CARDS) ================= -->
 @if (!loading && questions.length > 0) {
-  <table>
-    <tr>
-      <th>Question</th>
-      <th>Correct</th>
-      <th>Actions</th>
-    </tr>
+<div class="questions-grid">
+  @for (q of questions; track q.id) {
+  <div class="question-card">
 
-    @for (q of questions; track q.id) {
-      <tr>
-        <td>{{ q.questionText }}</td>
-        <td>{{ q.correctOption }}</td>
-        <td>
-          <button class="danger" (click)="deleteQuestion(q.id)">Delete</button>
-        </td>
-      </tr>
-    }
-  </table>
+    <div class="q-header">
+      <h4 class="q-text">{{ q.questionText }}</h4>
+    </div>
+
+    <div class="options-list">
+      <div class="option-item" [class.correct]="q.correctOption === 'A'">
+        <span class="option-marker">A</span>
+        {{ q.optionA }}
+      </div>
+      <div class="option-item" [class.correct]="q.correctOption === 'B'">
+        <span class="option-marker">B</span>
+        {{ q.optionB }}
+      </div>
+      <div class="option-item" [class.correct]="q.correctOption === 'C'">
+        <span class="option-marker">C</span>
+        {{ q.optionC }}
+      </div>
+      <div class="option-item" [class.correct]="q.correctOption === 'D'">
+        <span class="option-marker">D</span>
+        {{ q.optionD }}
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn danger" (click)="deleteQuestion(q.id)">
+        Delete Question
+      </button>
+    </div>
+
+  </div>
+  }
+</div>
 }
 
 @if (!loading && questions.length === 0) {
-  <p>No questions added yet.</p>
+<div class="empty-state">No questions added yet.</div>
 }
